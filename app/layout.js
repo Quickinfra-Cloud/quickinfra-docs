@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/next';
+
 
 const geist = Geist({
   subsets: ["latin"],
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body className="antialiased bg-[#F8F9FA] text-[#111827]">
         {children}
+        <Analytics />
       </body>
     </html>
   );
