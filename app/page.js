@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   FiSearch, FiArrowRight, FiChevronRight, FiBookOpen,
-  FiZap, FiShield, FiMenu, FiX, FiMapPin, FiMail, FiPhone,
+  FiMenu, FiX, FiMapPin, FiMail, FiPhone,
 } from "react-icons/fi";
 import {
   FaLinkedin, FaTwitter, FaYoutube,
@@ -208,18 +208,34 @@ export default function HomePage() {
 
       {/* ── Hero ── */}
       <section style={{
-        background: "linear-gradient(160deg, #0F172A 0%, #1E3A5F 50%, #1E293B 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, #1E3A5F 0%, #0F172A 70%)",
         padding: "80px 24px 88px",
         textAlign: "center",
         position: "relative",
-        overflow: "hidden",
       }}>
+        {/* Radial glow */}
         <div style={{
           position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)",
           width: 700, height: 500, borderRadius: "50%",
           background: "radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%)",
           pointerEvents: "none",
         }} />
+        {/* Animated bubbles */}
+        {[
+          { w: 80,  h: 80,  top: "10%", left: "5%",  dur: "7s",  delay: "0s"   },
+          { w: 120, h: 120, top: "60%", left: "8%",  dur: "10s", delay: "1.5s" },
+          { w: 55,  h: 55,  top: "20%", left: "88%", dur: "8s",  delay: "0.5s" },
+          { w: 90,  h: 90,  top: "70%", left: "82%", dur: "9s",  delay: "2s"   },
+          { w: 40,  h: 40,  top: "40%", left: "3%",  dur: "6s",  delay: "3s"   },
+          { w: 65,  h: 65,  top: "50%", left: "92%", dur: "11s", delay: "1s"   },
+          { w: 100, h: 100, top: "80%", left: "45%", dur: "13s", delay: "2.5s" },
+          { w: 48,  h: 48,  top: "15%", left: "55%", dur: "7.5s",delay: "4s"   },
+        ].map((b, i) => (
+          <div key={i} className="bubble" style={{
+            width: b.w, height: b.h, top: b.top, left: b.left,
+            animationDuration: b.dur, animationDelay: b.delay,
+          }} />
+        ))}
         <div style={{ position: "relative", maxWidth: 720, margin: "0 auto" }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
@@ -238,14 +254,14 @@ export default function HomePage() {
             letterSpacing: "-1.5px",
             marginBottom: 18,
           }}>
-            Everything you need to use{" "}
+            Welcome to{" "}
             <span style={{
               background: "linear-gradient(90deg, #60A5FA, #818CF8)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>
               QuickInfra
-            </span>
+            </span>{" "}Documentation
           </h1>
 
           <p style={{
@@ -291,7 +307,7 @@ export default function HomePage() {
               <div style={{
                 position: "absolute", top: "calc(100% + 8px)", left: 0, right: 0,
                 background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 12,
-                boxShadow: "0 16px 48px rgba(0,0,0,0.16)", overflow: "hidden", zIndex: 100,
+                boxShadow: "0 16px 48px rgba(0,0,0,0.16)", overflowY: "auto", maxHeight: 400, zIndex: 100,
               }}>
                 {results.map((page, i) => (
                   <Link
@@ -337,25 +353,6 @@ export default function HomePage() {
       </section>
 
       {/* ── Quick Stats ── */}
-      <section style={{ background: "#FFFFFF", borderBottom: "1px solid #E5E7EB" }}>
-        <div style={{
-          maxWidth: 1200, margin: "0 auto", padding: "18px 24px",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 48, flexWrap: "wrap",
-        }}>
-          {[
-            { icon: FiBookOpen, label: "23 Guides",          color: "#2563EB" },
-            { icon: FiZap,      label: "5 Sections",         color: "#4F46E5" },
-            { icon: FiShield,   label: "Multi-tenant Ready", color: "#059669" },
-          ].map(({ icon: Icon, label, color }) => (
-            <div key={label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <Icon size={15} color={color} />
-              <span style={{ fontSize: 13.5, fontWeight: 500, color: "#374151" }}>{label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ── Sections Grid ── */}
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "52px 24px 80px" }}>
         <h2 style={{ fontSize: 22, fontWeight: 700, color: "#111827", marginBottom: 6, letterSpacing: "-0.4px" }}>
@@ -555,12 +552,23 @@ export default function HomePage() {
       </footer>
 
       <style>{`
-        @media (max-width: 640px) {
+        .nav-desktop { display: flex !important; }
+        .btn-mobile-menu { display: none !important; }
+        @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .btn-mobile-menu { display: flex !important; }
         }
-        @media (min-width: 641px) {
-          .btn-mobile-menu { display: none !important; }
+        @keyframes bubbleFloat {
+          0%   { transform: translateY(0px) scale(1);      opacity: 0.18; }
+          50%  { transform: translateY(-40px) scale(1.08); opacity: 0.28; }
+          100% { transform: translateY(0px) scale(1);      opacity: 0.18; }
+        }
+        .bubble {
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(circle at 30% 30%, rgba(96,165,250,0.5), rgba(79,70,229,0.2));
+          animation: bubbleFloat linear infinite;
+          pointer-events: none;
         }
       `}</style>
     </div>
