@@ -109,6 +109,66 @@ export default function InfrastructureProjectsPage() {
         caption="Live Terraform execution output — QuickInfra streams every line of the OpenTofu run in real time, with line numbers and colour-coded status messages."
       />
 
+      <SectionHeading>Terraform Actions</SectionHeading>
+      <p>
+        The <strong>Select Action</strong> dropdown gives you full control over what happens when you
+        hit Execute. Each action maps to a specific Terraform operation run against your cloud account.
+      </p>
+      <ul style={{ paddingLeft: 20, display: "flex", flexDirection: "column", gap: 12, marginTop: 16 }}>
+        <li>
+          <strong>Generate Terraform</strong> — Generates the Terraform configuration files for your
+          project based on the services you have configured. No infrastructure is created yet — this
+          just prepares the scripts and validates your configuration.
+        </li>
+        <li>
+          <strong>View Terraform Plan</strong> — Shows a preview of what will be created, modified,
+          or destroyed when you execute against your cloud account. Nothing changes in AWS — this is
+          a safe read-only check and is recommended before every Apply in production.
+        </li>
+        <li>
+          <strong>Create Infrastructure</strong> — Applies your Terraform configuration and provisions
+          the actual cloud resources in your account. VPCs, EC2 instances, security groups, and all
+          configured services get created.
+        </li>
+        <li>
+          <strong>Plan and Create</strong> — Runs a plan first, then immediately applies it in one
+          step. Recommended for most use cases — you get the safety of a plan with the convenience
+          of a single action.
+        </li>
+        <li>
+          <strong>Remove Infrastructure</strong> — Destroys all cloud resources associated with this
+          project in your account. This permanently deletes VPCs, EC2 instances, security groups, and
+          all other provisioned resources. Use with caution in production.
+        </li>
+        <li>
+          <strong>Infrastructure Pricing</strong> — Estimates the monthly cost of your infrastructure
+          before creating it. Sends your plan to the cost estimation engine and returns a breakdown
+          per resource so you can review costs before committing.
+        </li>
+        <li>
+          <strong>Infrastructure Diff</strong> — Compares your current state file against the actual
+          state of resources in your cloud account. Useful for detecting drift — changes made directly
+          in AWS outside of QuickInfra will be surfaced here.
+        </li>
+        <li>
+          <strong>Update Modules</strong> — Refreshes the Terraform modules referenced in your project
+          to their latest versions. Run this if a module has been updated and you want to pull in the
+          latest changes before your next execution.
+        </li>
+        <li>
+          <strong>Upgrade Terraform</strong> — Upgrades the OpenTofu providers to their latest
+          compatible versions as defined in your configuration. Run this to stay current with AWS
+          provider updates.
+        </li>
+      </ul>
+
+      <Callout type="tip">
+        Run <strong>View Terraform Plan</strong> before every <strong>Create Infrastructure</strong>
+        in production environments. The plan output shows exactly which resources will be created,
+        modified, or destroyed — giving you a chance to catch unintended changes before they affect
+        live infrastructure.
+      </Callout>
+
       <SectionHeading>Service Actions</SectionHeading>
       <p>
         Each service in the project list has three action buttons available on the right:
@@ -119,16 +179,10 @@ export default function InfrastructureProjectsPage() {
         <li><strong>Delete</strong> — Remove the service from the project. This does not destroy the cloud resource — use Terraform Destroy for that.</li>
       </ul>
 
-      <Callout type="tip">
-        Run a <strong>Plan</strong> before every <strong>Apply</strong> in production environments.
-        The plan output shows exactly which resources will be created, modified, or destroyed —
-        giving you a chance to catch unintended changes before they affect live infrastructure.
-      </Callout>
-
       <Callout type="warning">
-        The <strong>Destroy</strong> action will permanently delete all cloud resources associated
-        with the project in your cloud account. This includes VPCs, EC2 instances, security groups,
-        and all other provisioned resources. Use with caution in production.
+        The <strong>Remove Infrastructure</strong> action will permanently delete all cloud resources
+        associated with the project in your cloud account. This includes VPCs, EC2 instances, security
+        groups, and all other provisioned resources. Use with caution in production.
       </Callout>
 
       <SectionHeading>Key Things to Know</SectionHeading>
