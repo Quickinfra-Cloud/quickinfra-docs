@@ -123,6 +123,9 @@ export const metadata = {
     apple: "/quickInfra-logo.png",
   },
   category: "technology",
+  verification: {
+    google: "sghVt-dr2iV3YAPKSG3wOlrlau2Kds98U-O_Hp4qazk",
+  },
 };
 
 export default function RootLayout({ children }) {
