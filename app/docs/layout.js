@@ -339,8 +339,8 @@ export default function DocsLayout({ children }) {
 
       {/* ── Top bar ── */}
       <header style={{
-        background: "#1E293B",
-        borderBottom: "1px solid #334155",
+        background: "#FFFFFF",
+        borderBottom: "1px solid #E5E7EB",
         position: "sticky", top: 0, zIndex: 50,
         height: 60,
         display: "flex", alignItems: "center",
@@ -351,19 +351,17 @@ export default function DocsLayout({ children }) {
         <button
           onClick={() => setSidebarOpen(true)}
           className="docs-hamburger"
-          style={{ background: "none", border: "none", color: "#CBD5E1", cursor: "pointer", flexShrink: 0 }}
+          style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", flexShrink: 0 }}
         >
           <FiMenu size={20} />
         </button>
 
         {/* Logo — desktop only */}
         <Link href="/" className="docs-logo-desktop"
-          style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", flexShrink: 0 }}>
-          <Image src="/quickInfra-logo.png" alt="QuickInfra" width={28} height={28}
+          style={{ display: "flex", alignItems: "center", gap: 4, textDecoration: "none", flexShrink: 0 }}>
+          <Image src="/quickInfra-logo.png" alt="QuickInfra" width={45} height={45}
             style={{ borderRadius: 6, objectFit: "contain" }} />
-          <Image src="/quickinfra.png" alt="QuickInfra" width={100} height={24}
-            style={{ objectFit: "contain" }} />
-          <span style={{ color: "#64748B", fontSize: 12, borderLeft: "1px solid #334155", paddingLeft: 8, marginLeft: 2 }}>
+          <span style={{ color: "#9CA3AF", fontSize: 12, borderLeft: "1px solid #E5E7EB", paddingLeft: 8, marginLeft: 2 }}>
             Docs
           </span>
         </Link>

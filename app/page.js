@@ -59,8 +59,8 @@ export default function HomePage() {
 
       {/* ── Topbar ── */}
       <header style={{
-        background: "#1E293B",
-        borderBottom: "1px solid #334155",
+        background: "#FFFFFF",
+        borderBottom: "1px solid #E5E7EB",
         position: "sticky",
         top: 0,
         zIndex: 50,
@@ -76,26 +76,19 @@ export default function HomePage() {
           gap: 24,
         }}>
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 4, textDecoration: "none" }}>
             <Image
               src="/quickInfra-logo.png"
               alt="QuickInfra Icon"
-              width={36}
-              height={36}
+              width={50}
+              height={50}
               style={{ borderRadius: 8, objectFit: "contain" }}
             />
-            <Image
-              src="/quickinfra.png"
-              alt="QuickInfra"
-              width={120}
-              height={28}
-              style={{ objectFit: "contain" }}
-            />
             <span style={{
-              color: "#64748B",
+              color: "#9CA3AF",
               fontSize: 13,
               fontWeight: 500,
-              borderLeft: "1px solid #334155",
+              borderLeft: "1px solid #E5E7EB",
               paddingLeft: 10,
               marginLeft: 2,
             }}>
@@ -110,7 +103,7 @@ export default function HomePage() {
                 key={section.id}
                 href={section.items[0].href}
                 style={{
-                  color: "#CBD5E1",
+                  color: "#374151",
                   textDecoration: "none",
                   fontSize: 14,
                   fontWeight: 500,
@@ -119,11 +112,11 @@ export default function HomePage() {
                   transition: "all 0.15s",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#F8FAFC";
-                  e.currentTarget.style.background = "#334155";
+                  e.currentTarget.style.color = "#111827";
+                  e.currentTarget.style.background = "#F1F5F9";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#CBD5E1";
+                  e.currentTarget.style.color = "#374151";
                   e.currentTarget.style.background = "transparent";
                 }}
               >
@@ -155,7 +148,7 @@ export default function HomePage() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="btn-mobile-menu"
-              style={{ background: "none", border: "none", color: "#CBD5E1", cursor: "pointer" }}
+              style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer" }}
             >
               {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </button>
@@ -164,7 +157,7 @@ export default function HomePage() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div style={{ background: "#1E293B", borderTop: "1px solid #334155", padding: "12px 24px 16px" }}>
+          <div style={{ background: "#FFFFFF", borderTop: "1px solid #E5E7EB", padding: "12px 24px 16px" }}>
             {navigation.map((section) => (
               <Link
                 key={section.id}
@@ -172,12 +165,12 @@ export default function HomePage() {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   display: "block",
-                  color: "#CBD5E1",
+                  color: "#374151",
                   textDecoration: "none",
                   fontSize: 14,
                   fontWeight: 500,
                   padding: "10px 0",
-                  borderBottom: "1px solid #334155",
+                  borderBottom: "1px solid #E5E7EB",
                 }}
               >
                 {section.name}
@@ -208,46 +201,31 @@ export default function HomePage() {
 
       {/* ── Hero ── */}
       <section style={{
-        background: "radial-gradient(ellipse at 50% 40%, #1E3A5F 0%, #0F172A 70%)",
+        background: "#FFFFFF",
         padding: "80px 24px 88px",
         textAlign: "center",
         position: "relative",
+        borderBottom: "1px solid #E5E7EB",
+        backgroundImage: "linear-gradient(#E8F0FE 1px, transparent 1px), linear-gradient(to right, #E8F0FE 1px, transparent 1px)",
+        backgroundSize: "52px 52px",
       }}>
-        {/* Radial glow */}
+        {/* Fade mask over dot grid — top, bottom, sides */}
         <div style={{
-          position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)",
-          width: 700, height: 500, borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%)",
-          pointerEvents: "none",
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,255,255,0) 30%, rgba(255,255,255,0.95) 100%)",
         }} />
-        {/* Animated bubbles */}
-        {[
-          { w: 80,  h: 80,  top: "10%", left: "5%",  dur: "7s",  delay: "0s"   },
-          { w: 120, h: 120, top: "60%", left: "8%",  dur: "10s", delay: "1.5s" },
-          { w: 55,  h: 55,  top: "20%", left: "88%", dur: "8s",  delay: "0.5s" },
-          { w: 90,  h: 90,  top: "70%", left: "82%", dur: "9s",  delay: "2s"   },
-          { w: 40,  h: 40,  top: "40%", left: "3%",  dur: "6s",  delay: "3s"   },
-          { w: 65,  h: 65,  top: "50%", left: "92%", dur: "11s", delay: "1s"   },
-          { w: 100, h: 100, top: "80%", left: "45%", dur: "13s", delay: "2.5s" },
-          { w: 48,  h: 48,  top: "15%", left: "55%", dur: "7.5s",delay: "4s"   },
-        ].map((b, i) => (
-          <div key={i} className="bubble" style={{
-            width: b.w, height: b.h, top: b.top, left: b.left,
-            animationDuration: b.dur, animationDelay: b.delay,
-          }} />
-        ))}
         <div style={{ position: "relative", maxWidth: 720, margin: "0 auto" }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 6,
-            background: "rgba(37,99,235,0.15)", border: "1px solid rgba(37,99,235,0.3)",
+            background: "#EFF6FF", border: "1px solid #BFDBFE",
             borderRadius: 999, padding: "5px 14px", marginBottom: 28,
           }}>
-            <FiBookOpen size={13} color="#60A5FA" />
-            <span style={{ color: "#60A5FA", fontSize: 13, fontWeight: 500 }}>Documentation</span>
+            <FiBookOpen size={13} color="#2563EB" />
+            <span style={{ color: "#2563EB", fontSize: 13, fontWeight: 500 }}>Documentation</span>
           </div>
 
           <h1 style={{
-            color: "#F8FAFC",
+            color: "#0F172A",
             fontSize: "clamp(30px, 5vw, 52px)",
             fontWeight: 800,
             lineHeight: 1.15,
@@ -256,7 +234,7 @@ export default function HomePage() {
           }}>
             Welcome to{" "}
             <span style={{
-              background: "linear-gradient(90deg, #60A5FA, #818CF8)",
+              background: "linear-gradient(90deg, #2563EB, #4F46E5)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>
@@ -265,7 +243,7 @@ export default function HomePage() {
           </h1>
 
           <p style={{
-            color: "#94A3B8", fontSize: 18, lineHeight: 1.7,
+            color: "#64748B", fontSize: 18, lineHeight: 1.7,
             maxWidth: 560, margin: "0 auto 44px",
           }}>
             Step-by-step guides for every feature — from cloud accounts to CI/CD pipelines.
@@ -443,7 +421,7 @@ export default function HomePage() {
       </main>
 
       {/* ── Footer ── */}
-      <footer style={{ background: "#0F172A", borderTop: "1px solid #1E293B" }}>
+      <footer style={{ background: "#F8FAFC", borderTop: "1px solid #E5E7EB" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px 36px" }}>
           <div style={{
             display: "grid",
@@ -452,13 +430,11 @@ export default function HomePage() {
           }}>
             {/* Brand */}
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                <Image src="/quickInfra-logo.png" alt="QuickInfra" width={36} height={36}
+              <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 16 }}>
+                <Image src="/quickInfra-logo.png" alt="QuickInfra" width={50} height={50}
                   style={{ borderRadius: 8, objectFit: "contain" }} />
-                <Image src="/quickinfra.png" alt="QuickInfra" width={110} height={26}
-                  style={{ objectFit: "contain" }} />
               </div>
-              <p style={{ color: "#64748B", fontSize: 13, lineHeight: 1.7, marginBottom: 20, maxWidth: 240 }}>
+              <p style={{ color: "#6B7280", fontSize: 13, lineHeight: 1.7, marginBottom: 20, maxWidth: 240 }}>
                 DevOps &amp; InfraOps Automation Platform.<br />
                 Turn Infrastructure Into Code and Code Into Impact.
               </p>
@@ -471,9 +447,9 @@ export default function HomePage() {
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                     style={{
                       width: 34, height: 34, borderRadius: 8,
-                      background: "#1E293B", border: "1px solid #334155",
+                      background: "#FFFFFF", border: "1px solid #E5E7EB",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "#94A3B8", textDecoration: "none", transition: "all 0.15s",
+                      color: "#6B7280", textDecoration: "none", transition: "all 0.15s",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = "#2563EB";
@@ -481,9 +457,9 @@ export default function HomePage() {
                       e.currentTarget.style.color = "#fff";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "#1E293B";
-                      e.currentTarget.style.borderColor = "#334155";
-                      e.currentTarget.style.color = "#94A3B8";
+                      e.currentTarget.style.background = "#FFFFFF";
+                      e.currentTarget.style.borderColor = "#E5E7EB";
+                      e.currentTarget.style.color = "#6B7280";
                     }}
                   >
                     <SIcon size={15} />
@@ -494,7 +470,7 @@ export default function HomePage() {
 
             {/* Contact */}
             <div>
-              <div style={{ color: "#F1F5F9", fontWeight: 600, fontSize: 12, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.7px" }}>
+              <div style={{ color: "#111827", fontWeight: 600, fontSize: 12, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.7px" }}>
                 Contact Us
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -507,12 +483,12 @@ export default function HomePage() {
                 </div>
                 <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
                   <FiMail size={14} color="#2563EB" style={{ flexShrink: 0 }} />
-                  <a href="mailto:info@quickinfracloud.com"
+                  <a href="mailto:support@quickinfracloud.com"
                     style={{ color: "#64748B", textDecoration: "none", fontSize: 13, transition: "color 0.15s" }}
                     onMouseEnter={(e) => e.currentTarget.style.color = "#60A5FA"}
                     onMouseLeave={(e) => e.currentTarget.style.color = "#64748B"}
                   >
-                    info@quickinfracloud.com
+                    support@quickinfracloud.com
                   </a>
                 </div>
                 <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
@@ -531,19 +507,19 @@ export default function HomePage() {
         </div>
 
         {/* Bottom bar */}
-        <div style={{ borderTop: "1px solid #1E293B", padding: "16px 24px" }}>
+        <div style={{ borderTop: "1px solid #E5E7EB", padding: "16px 24px" }}>
           <div style={{
             maxWidth: 1200, margin: "0 auto",
             display: "flex", alignItems: "center", justifyContent: "space-between",
             flexWrap: "wrap", gap: 8,
           }}>
-            <span style={{ color: "#475569", fontSize: 13 }}>
+            <span style={{ color: "#9CA3AF", fontSize: 13 }}>
               © 2026 QuickInfra Cloud Solutions Pvt. Ltd. All rights reserved.
             </span>
             <a href="https://quickinfracloud.com/privacy-policy/" target="_blank" rel="noopener noreferrer"
-              style={{ color: "#475569", textDecoration: "none", fontSize: 13, transition: "color 0.15s" }}
-              onMouseEnter={(e) => e.currentTarget.style.color = "#60A5FA"}
-              onMouseLeave={(e) => e.currentTarget.style.color = "#475569"}
+              style={{ color: "#9CA3AF", textDecoration: "none", fontSize: 13, transition: "color 0.15s" }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "#2563EB"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "#9CA3AF"}
             >
               Privacy Policy
             </a>
@@ -557,18 +533,6 @@ export default function HomePage() {
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .btn-mobile-menu { display: flex !important; }
-        }
-        @keyframes bubbleFloat {
-          0%   { transform: translateY(0px) scale(1);      opacity: 0.18; }
-          50%  { transform: translateY(-40px) scale(1.08); opacity: 0.28; }
-          100% { transform: translateY(0px) scale(1);      opacity: 0.18; }
-        }
-        .bubble {
-          position: absolute;
-          border-radius: 50%;
-          background: radial-gradient(circle at 30% 30%, rgba(96,165,250,0.5), rgba(79,70,229,0.2));
-          animation: bubbleFloat linear infinite;
-          pointer-events: none;
         }
       `}</style>
     </div>
